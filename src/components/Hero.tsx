@@ -1,94 +1,103 @@
-import name from "../assets/myname.png";
-import glitter_star from "../assets/glitterstars.png";
-import glitter_fabric from "../assets/glitterfabric.png";
-import paper from "../assets/paper.png";
-import barbie_sticker from "../assets/barbie-sticker.png";
-import flower_sticker from "../assets/flower-sticker.png";
-import barbie_doll from "../assets/barbie.png";
-import dotted_background from "../assets/dotted-bg.jpeg";
-import { TypeAnimation } from "react-type-animation";
+import { useEffect, useRef, useState } from "react";
+import Background3D from "./Background3D";
 
 function Hero() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [coords, setCoords] = useState({ x: 0, y: 0 });
+  const [time, setTime] = useState("");
+
+  useEffect(() => {
+    const updateTime = () => {
+      const formatted = new Intl.DateTimeFormat("en-GB", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+        timeZone: "Asia/Karachi",
+      }).format(new Date());
+      setTime(formatted);
+    };
+    updateTime();
+    const interval = setInterval(updateTime, 30000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (!sectionRef.current) return;
+    const rect = sectionRef.current.getBoundingClientRect();
+    setCoords({
+      x: Math.round(event.clientX - rect.left),
+      y: Math.round(event.clientY - rect.top),
+    });
+  };
+
   return (
     <div
-      className="w-full min-h-screen bg-repeat px-4 py-10 overflow-hidden"
-      style={{ backgroundImage: `url(${dotted_background})` }}
+      id="top"
+      ref={sectionRef}
+      onMouseMove={handleMouseMove}
+      className="relative w-full min-h-screen bg-[#05060F] overflow-hidden"
     >
-      <div className="relative -mt-20 w-full max-w-5xl mx-auto min-h-[650px] flex items-center justify-center">
-        {/* Paper */}
-        <img
-          src={paper}
-          className="absolute z-0 w-full max-w-sm sm:max-w-md md:max-w-lg h-auto"
-          alt=""
-        />
+      <div
+        className="absolute inset-0 z-0 opacity-40"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)",
+          backgroundSize: "80px 80px",
+        }}
+      />
 
-        
-        <img
-          src={name}
-          className="relative z-10 w-full max-w-xs sm:max-w-sm md:max-w-md mt-3 h-auto"
-          alt="my-name"
-        />
+      <Background3D />
 
-    
-        <div className="absolute top-[60%] left-1/2 -translate-x-1/2 z-20 text-center">
-                <div className="absolute top-[60%] left-1/2 -translate-x-1/2 z-20 text-center">
-            <TypeAnimation
-  sequence={[
-    "Hi, I'm an 18 y/o TypeScript Developer",
-    1000000,
-  ]}
-  wrapper="h2"
-  speed={55}
-  cursor={true}
-  repeat={0}
-  style={{ fontFamily: "Kalam" }}
-  className="mt-20 text-2xl sm:text-3xl md:text-4xl text-[#FF3197] whitespace-nowrap"
-/>
-</div>
-
-       
+      <div className="relative z-20 flex flex-col justify-between min-h-screen px-6 sm:px-10 pt-24 pb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-4">
+          <h1
+            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            className="text-white text-2xl sm:text-3xl font-medium leading-tight"
+          >
+            Design &<br />
+            Development
+          </h1>
+          <p
+            style={{ fontFamily: "'JetBrains Mono', monospace" }}
+            className="text-white/60 text-xs sm:text-sm leading-relaxed"
+          >
+            Thinking in components.
+            <br />
+            Shipping with care.
+          </p>
+          <p
+            style={{ fontFamily: "'JetBrains Mono', monospace" }}
+            className="text-white/60 text-xs sm:text-sm leading-relaxed"
+          >
+            I'm Aleeza, an 18 year old full-stack developer building resume
+            tools, storefronts, and the odd experimental interface along the
+            way.
+          </p>
         </div>
 
-      
-        <img
-          src={glitter_star}
-          className="absolute z-20 top-2 bottom-2 left-0  sm:left-4 w-14 sm:w-20 h-auto -rotate-12"
-          alt=""
-        />
+        <div className="mt-10 sm:mt-0">
+          <h2
+            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            className="text-white font-semibold uppercase leading-[0.95] text-[13vw] sm:text-[7vw] tracking-tight"
+          >
+            I Build
+            <br />
+            <span className="text-[#FF3FA4]">Craft &amp; Code</span>
+            <br />
+            That Ships
+          </h2>
+        </div>
 
-     
-        <img
-          src={barbie_sticker}
-          className="absolute z-20 top-0 right-0 sm:top-4 sm:right-6 w-16 sm:w-24 h-auto rotate-6"
-          alt=""
-        />
-
-    
-        <img
-          src={flower_sticker}
-          className="absolute z-20 bottom-0 left-2 sm:bottom-4 sm:left-8 w-14 sm:w-20 h-auto -rotate-6"
-          alt=""
-        />
-
-   
-        <img
-          src={glitter_fabric}
-          className="absolute z-20 bottom-0 right-2 sm:bottom-2 sm:right-10 w-14 sm:w-20 h-auto rotate-12"
-          alt=""
-        />
-
-        <img
-          src={barbie_doll}
-          className="hidden md:block absolute z-20 -right-16 lg:-right-24 bottom-0 w-32 lg:w-44 h-auto"
-          alt=""
-        />
-
-   
-        <img
-          src={glitter_star}
-          className="hidden md:block absolute z-20 -left-16 lg:-left-24 top-6 w-20 lg:w-28 h-auto rotate-45"
-          alt=""
-        />
+        <div
+          style={{ fontFamily: "'JetBrains Mono', monospace" }}
+          className="flex items-center justify-between text-white/50 text-[11px] sm:text-xs tracking-wider"
+        >
+          <span>GMT+5 PK {time}</span>
+          <span>
+            {String(coords.x).padStart(4, "0")} X{" "}
+            {String(coords.y).padStart(4, "0")} Y
+          </span>
+        </div>
       </div>
     </div>
   );

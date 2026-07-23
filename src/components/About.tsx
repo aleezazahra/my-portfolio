@@ -1,8 +1,9 @@
-function About(){
-return(
-    <section id="about">
-        
-    </section>
-)
+
+
+function About() {
+  return (
+  <></>
+  )
 }
+
 export default About;

@@ -5,7 +5,7 @@ function Home(){
       
         <div className="bg-pink-50 min-h-screen w-full">
              <Hero />
-        <About />
+             <About />
         </div>
        
       
