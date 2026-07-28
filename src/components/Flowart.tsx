@@ -16,6 +16,7 @@ export interface FlowSectionProps {
   style?: React.CSSProperties;
   children: React.ReactNode;
   'aria-label'?: string;
+  pin?: boolean;
 }
 
 export const FlowSection: React.FC<FlowSectionProps> = ({
@@ -23,17 +24,23 @@ export const FlowSection: React.FC<FlowSectionProps> = ({
   style = {},
   children,
   'aria-label': ariaLabel,
+  pin = true,
 }) => (
   <section
     data-flow-section
+    data-flow-pin={pin ? 'true' : 'false'}
     aria-label={ariaLabel}
-    className={cx('relative min-h-screen w-full overflow-hidden', className)}
+    className={cx(
+      'relative w-full',
+      pin ? 'min-h-screen overflow-hidden' : 'min-h-screen h-auto overflow-visible',
+      className,
+    )}
   >
     <div
       data-flow-inner
       className={cx(
         'flow-art-container relative flex min-h-screen w-full flex-col justify-between gap-6 px-[4vw] pt-[clamp(2rem,8vw,4vw)] pb-[4vw]',
-        'will-change-transform shadow-2xl bg-white', // Added bg-white & shadow for card depth effect
+        'will-change-transform shadow-2xl bg-white',
       )}
       style={{ transformOrigin: 'bottom left', ...style }}
     >
@@ -69,7 +76,7 @@ const FlowArt: React.FC<FlowArtProps> = ({
   useGSAP(
     () => {
       if (!containerRef.current || reducedMotion) return;
-      
+
       const sections = Array.from(
         containerRef.current.querySelectorAll<HTMLElement>('[data-flow-section]'),
       );
@@ -78,18 +85,18 @@ const FlowArt: React.FC<FlowArtProps> = ({
       const triggers: ScrollTrigger[] = [];
 
       sections.forEach((section, i) => {
-        // Ensure proper stacking order so later sections sit on top
         gsap.set(section, { zIndex: i + 1 });
         const inner = section.querySelector<HTMLElement>('.flow-art-container');
         if (!inner) return;
 
-        // Animate incoming sections
+        const canPin = section.dataset.flowPin !== 'false';
+
         if (i > 0) {
-          gsap.set(inner, { 
-            rotation: 15, 
-            scale: 0.9, 
+          gsap.set(inner, {
+            rotation: 15,
+            scale: 0.9,
             y: 50,
-            transformOrigin: 'bottom left' 
+            transformOrigin: 'bottom left',
           });
 
           const tween = gsap.to(inner, {
@@ -104,12 +111,11 @@ const FlowArt: React.FC<FlowArtProps> = ({
               scrub: 0.5,
             },
           });
-          
+
           if (tween.scrollTrigger) triggers.push(tween.scrollTrigger);
         }
 
-        // Pin sections as they reach the top
-        if (i < sections.length - 1) {
+        if (canPin && i < sections.length - 1) {
           triggers.push(
             ScrollTrigger.create({
               trigger: section,
