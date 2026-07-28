@@ -1,4 +1,5 @@
 'use client';
+
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -32,7 +33,7 @@ export const FlowSection: React.FC<FlowSectionProps> = ({
       data-flow-inner
       className={cx(
         'flow-art-container relative flex min-h-screen w-full flex-col justify-between gap-6 px-[4vw] pt-[clamp(2rem,8vw,4vw)] pb-[4vw]',
-        'will-change-transform',
+        'will-change-transform shadow-2xl bg-white', // Added bg-white & shadow for card depth effect
       )}
       style={{ transformOrigin: 'bottom left', ...style }}
     >
@@ -68,6 +69,7 @@ const FlowArt: React.FC<FlowArtProps> = ({
   useGSAP(
     () => {
       if (!containerRef.current || reducedMotion) return;
+      
       const sections = Array.from(
         containerRef.current.querySelectorAll<HTMLElement>('[data-flow-section]'),
       );
@@ -76,30 +78,42 @@ const FlowArt: React.FC<FlowArtProps> = ({
       const triggers: ScrollTrigger[] = [];
 
       sections.forEach((section, i) => {
+        // Ensure proper stacking order so later sections sit on top
         gsap.set(section, { zIndex: i + 1 });
         const inner = section.querySelector<HTMLElement>('.flow-art-container');
         if (!inner) return;
 
+        // Animate incoming sections
         if (i > 0) {
-          gsap.set(inner, { rotation: 30, transformOrigin: 'bottom left' });
+          gsap.set(inner, { 
+            rotation: 15, 
+            scale: 0.9, 
+            y: 50,
+            transformOrigin: 'bottom left' 
+          });
+
           const tween = gsap.to(inner, {
             rotation: 0,
-            ease: 'none',
+            scale: 1,
+            y: 0,
+            ease: 'power2.out',
             scrollTrigger: {
               trigger: section,
               start: 'top bottom',
-              end: 'top 25%',
-              scrub: true,
+              end: 'top 20%',
+              scrub: 0.5,
             },
           });
+          
           if (tween.scrollTrigger) triggers.push(tween.scrollTrigger);
         }
 
+        // Pin sections as they reach the top
         if (i < sections.length - 1) {
           triggers.push(
             ScrollTrigger.create({
               trigger: section,
-              start: 'bottom bottom',
+              start: 'top top',
               end: 'bottom top',
               pin: true,
               pinSpacing: false,
@@ -109,7 +123,6 @@ const FlowArt: React.FC<FlowArtProps> = ({
       });
 
       ScrollTrigger.refresh();
-
       return () => {
         triggers.forEach((t) => t.kill());
       };
@@ -121,7 +134,7 @@ const FlowArt: React.FC<FlowArtProps> = ({
     <main
       ref={containerRef}
       aria-label={ariaLabel}
-      className={cx('w-full overflow-x-hidden', className)}
+      className={cx('w-full overflow-x-hidden relative', className)}
     >
       {children}
     </main>
