@@ -1,28 +1,104 @@
 import { useState } from "react";
 import { FlowSection } from "./Flowart";
 import { Icon } from "@iconify/react";
-
+import naqsh from "../assets/naqsh.png"
+import store from "../assets/paperpalace.png"
+import catos from "../assets/catos.png"
+import rice from "../assets/rice.png"
+import portfolio from "../assets/portfolio1.png"
 const GITHUB_PROFILE = "https://github.com/your-username";
 
 const projects = [
   {
     index: "01",
-    icon: "mdi:magnify",
-    iconBg: "#EFE6D8",
+  
     title: "Naqsh Resume Builder",
     category: "Full-Stack",
     dateRange: "June 2026",
     description:
-      "Built a resume builder site with AI-integration ",
+      "Developed a full-stack resume builder application enabling users to create, customize, and export professional resumes through an intuitive interface with secure user authentication ",
     stack: [
       { label: "Frontend", value: "TypeScript, React" },
-      { label: "Backend", value: "Node.js, Express.js , MongoDB" },
+      { label: "Backend", value: "Node.js, Express.js , MongoDB, googleAuth"}
     
     ],
   
-    image: "/projects/before-you-sign.png",
-    github: "https://github.com/your-username/before-you-sign",
+    image: naqsh,
+    github: "https://github.com/aleezazahra/resume-builder",
   },
+  {
+    index: "02",
+   
+   
+    title: "Paper Bags E-commerce store ",
+    category: "Full-Stack",
+    dateRange: "July 2026",
+    description:
+      "Built a MERN-based stationery e-commerce store with an admin panel for inventory and order management, user authentication, and secure payment gateway integration.",
+    stack: [
+      { label: "Frontend", value: "TypeScript, React" },
+      { label: "Backend", value: "Node.js, Express.js , MongoDB"}
+    
+    ],
+  
+    image: store,
+    github: "https://github.com/aleezazahra/resume-builder",
+  },
+  {
+    index: "03",
+   
+   
+    title: "CatOs Portfolio",
+    category: "Frontend",
+    dateRange: "March 2026",
+    description:
+      "Built a retro Operating system themed portfolio with cute cat background",
+    stack: [
+      { label: "Frontend", value: "TypeScript, React" },
+      
+    
+    ],
+  
+    image: catos,
+    github: "https://github.com/aleezazahra/resume-builder",
+  },
+  {
+    index: "04",
+   
+   
+    title: "Hyprland Fedora Rice ",
+    category: "Bash Scripting | Linux",
+    dateRange: "July 2026",
+    description:
+      "Built a MERN-based stationery e-commerce store with an admin panel for inventory and order management, user authentication, and secure payment gateway integration.",
+    stack: [
+      { label: "Technologies", value: " bash, css, hyprland, waybar etc" },
+    
+    
+    ],
+  
+    image: rice,
+    github: "https://github.com/aleezazahra/hyprland-fedora",
+  },
+  {
+    index: "05",
+   
+   
+    title: "Portfolio site ",
+    category: "TailwindCSS | React",
+    dateRange: "January 2026",
+    description:
+      "Built my first portfolio with tailwindCss and React implemented dark and light mode , with skills and about me page",
+    stack: [
+      { label: "Technologies", value: " bash, css, hyprland, waybar etc" },
+    
+    
+    ],
+  
+    image: portfolio,
+    github: "https://github.com/aleezazahra/portfolio",
+  },
+  
   
 ];
 
@@ -98,12 +174,7 @@ function Projects() {
 
           <div className="flex items-start justify-between">
             <div className="flex items-center gap-3">
-              <span
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg"
-                style={{ backgroundColor: project.iconBg }}
-              >
-                <Icon icon={project.icon} width={22} height={22} color="#1d4ed8" />
-              </span>
+              
               <h3 className="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-black">
                 {project.title}
               </h3>
@@ -115,13 +186,13 @@ function Projects() {
             </span>
           </div>
 
-          <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-start">
+          <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-5 lg:items-start">
             
-            <div>
+            <div className="lg:col-span-2">
             
 
               <p
-                className="mt-5 max-w-md text-base leading-relaxed"
+                className="mt-5 max-w-md text-lg leading-relaxed"
                 style={{ color: "#333333" }}
               >
                 {project.description}
@@ -150,13 +221,13 @@ function Projects() {
             </div>
 
         
-            <div className="aspect-[4/3] overflow-hidden rounded-xl border border-black/10 bg-black/5 shadow-sm">
+            <div className="lg:col-span-3 aspect-[16/9] overflow-hidden rounded-xl border border-black/10 bg-black/5 shadow-sm">
               {!imgError ? (
                 <img
                   src={project.image}
                   alt={`${project.title} screenshot`}
                   onError={() => setImgError(true)}
-                  className="h-full w-full object-cover object-top"
+                  className="h-full w-full object-cover object-center"
                 />
               ) : (
                 <div className="flex h-full w-full flex-col items-center justify-center gap-2 text-black/30">
