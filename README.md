@@ -4,9 +4,7 @@ this is my another one (ok last one) portfolio that im gonna make on a scrapbook
 
 tech stack : React , tailwindcss, typescript
 
-
-about , projects, contact
-
+took the inspo forr this scroll effect 
 
 
 

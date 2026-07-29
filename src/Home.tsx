@@ -81,7 +81,7 @@ export default function Home() {
             <div className="mt-8 flex gap-5">
           
               <a href="#contact" ref={contactRef}>
-                <button className="relative overflow-hidden rounded-full border border-white/40 px-8 py-3 text-xs uppercase tracking-[0.35em] group">
+                <button className="relative overflow-hidden rounded-full border border-white/40 px-10 py-4 text-xs uppercase tracking-[0.35em] group">
                   <video
                     autoPlay
                     loop
@@ -93,7 +93,7 @@ export default function Home() {
                     <source src={myVideo} type="video/mp4" />
                   </video>
                   <span className="absolute inset-0 bg-black/40 transition-opacity duration-300 group-hover:bg-black/10"></span>
-                  <span className="relative z-10 flex items-center justify-center gap-2 text-white font-bold">
+                  <span className="relative z-10 flex items-center justify-center gap-2 text-white text-sm font-bold">
                     Contact
                   </span>
                 </button>
@@ -104,7 +104,7 @@ export default function Home() {
                 href={myResume}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative overflow-hidden rounded-full border border-white/25 px-10 py-3 text-xs uppercase tracking-[0.35em] group"
+                className="relative overflow-hidden rounded-full border border-white/25 px-10 py-4 text-sm uppercase tracking-[0.35em] group"
               >
                 <span className="absolute inset-x-0 bottom-0 h-0 bg-white transition-all duration-300 ease-out group-hover:h-full"></span>
                 <span className="relative z-10 flex flex-row items-center justify-center gap-2 text-white transition-colors duration-300 group-hover:text-black">

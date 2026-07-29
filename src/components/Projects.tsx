@@ -6,100 +6,86 @@ import store from "../assets/paperpalace.png"
 import catos from "../assets/catos.png"
 import rice from "../assets/rice.png"
 import portfolio from "../assets/portfolio1.png"
-const GITHUB_PROFILE = "https://github.com/your-username";
+const GITHUB_PROFILE = "https://github.com/aleezazahra";
 
 const projects = [
   {
-    index: "01",
-  
+    index: "001",
     title: "Naqsh Resume Builder",
     category: "Full-Stack",
     dateRange: "June 2026",
+    accent: "#686868",
     description:
-      "Developed a full-stack resume builder application enabling users to create, customize, and export professional resumes through an intuitive interface with secure user authentication ",
+      "A full-stack resume builder that lets users create, customize, and export professional resumes through a clean, guided interface. Includes secure sign-in with Google OAuth, live editing with instant preview, multiple resume templates, and one-click PDF export, all backed by a MongoDB data layer for saving and revisiting drafts.",
     stack: [
       { label: "Frontend", value: "TypeScript, React" },
-      { label: "Backend", value: "Node.js, Express.js , MongoDB, googleAuth"}
-    
+      { label: "Backend", value: "Node.js, Express.js, MongoDB, Google Auth" }
     ],
-  
     image: naqsh,
     github: "https://github.com/aleezazahra/resume-builder",
+    url: "https://naqshresume.vercel.app",
   },
   {
-    index: "02",
-   
-   
+    index: "002",
     title: "Paper Bags E-commerce store ",
     category: "Full-Stack",
     dateRange: "July 2026",
+    accent: "#686868",
     description:
-      "Built a MERN-based stationery e-commerce store with an admin panel for inventory and order management, user authentication, and secure payment gateway integration.",
+      "A MERN-based e-commerce storefront for stationery and paper products, with a full admin panel for managing inventory, tracking orders, and updating listings. Handles user authentication, a persistent cart, and integrated secure payment processing from browsing through checkout.",
     stack: [
       { label: "Frontend", value: "TypeScript, React" },
-      { label: "Backend", value: "Node.js, Express.js , MongoDB"}
-    
+      { label: "Backend", value: "Node.js, Express.js, MongoDB" }
     ],
-  
     image: store,
-    github: "https://github.com/aleezazahra/resume-builder",
+    github: null,
+    url: "https://project-stationary.vercel.app/",
   },
   {
-    index: "03",
-   
-   
+    index: "003",
     title: "CatOs Portfolio",
     category: "Frontend",
     dateRange: "March 2026",
+    accent: "#686868",
     description:
-      "Built a retro Operating system themed portfolio with cute cat background",
+      "A retro operating-system-themed personal portfolio, styled as a desktop complete with draggable windows, a taskbar, and boot animation, wrapped in a cozy cat-themed background for a playful, nostalgic feel.",
     stack: [
-      { label: "Frontend", value: "TypeScript, React" },
-      
-    
+      { label: "Frontend", value: "  TypeScript, React" },
     ],
-  
     image: catos,
-    github: "https://github.com/aleezazahra/resume-builder",
+    github: "https://github.com/aleezazahra/CatOs",
+    url: "https://catos-portfolio01.netlify.app/",
   },
   {
-    index: "04",
-   
-   
+    index: "004",
     title: "Hyprland Fedora Rice ",
     category: "Bash Scripting | Linux",
     dateRange: "July 2026",
+    accent: "#686868",
     description:
-      "Built a MERN-based stationery e-commerce store with an admin panel for inventory and order management, user authentication, and secure payment gateway integration.",
+      "A fully customized Fedora desktop setup built around the Hyprland Wayland compositor, including a hand-configured Waybar status bar, custom keybindings, and shell scripts that tie theming, wallpapers, and system utilities together into one cohesive rice.",
     stack: [
-      { label: "Technologies", value: " bash, css, hyprland, waybar etc" },
-    
-    
+      { label: "Tech ", value: "Bash, CSS, Hyprland, Waybar, Pywal, zsh" },
     ],
-  
     image: rice,
     github: "https://github.com/aleezazahra/hyprland-fedora",
+    url: "https://youtu.be/FHg1B-dUH2M",
   },
   {
-    index: "05",
-   
-   
+    index: "005",
     title: "Portfolio site ",
     category: "TailwindCSS | React",
     dateRange: "January 2026",
+    accent: "#686868",
     description:
-      "Built my first portfolio with tailwindCss and React implemented dark and light mode , with skills and about me page",
+      "My first personal portfolio, built with React and TailwindCSS in a soft pink-toned design. Features a light/dark mode toggle, a dedicated skills section, and an about-me page introducing who I am beyond the code.",
     stack: [
-      { label: "Technologies", value: " bash, css, hyprland, waybar etc" },
-    
-    
+      { label: "Frontend", value: "React, TailwindCSS" },
     ],
-  
     image: portfolio,
     github: "https://github.com/aleezazahra/portfolio",
+    url: "https://portfolio-aleeza81.vercel.app/",
   },
-  
-  
 ];
 
 function Projects() {
@@ -123,6 +109,7 @@ function Projects() {
   return (
     <FlowSection
       aria-label="Projects"
+      
       pin={false}
       style={{ backgroundColor: "#fff", color: "#111" }}
     >
@@ -130,19 +117,19 @@ function Projects() {
         Projects
       </h2>
 
-      <div className="relative mt-16 border-t border-black/10">
-        
+      <div className="relative mt-12">
+
         <button
           type="button"
           onClick={goPrev}
           disabled={isFirst}
           aria-label="Previous project"
-          className="absolute left-0 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-black/15 bg-black text-white shadow-md transition-opacity hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-20"
+          className="absolute left-0 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border bg-black text-white shadow-md transition-opacity hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-20"
         >
           <Icon icon="mdi:chevron-left" width={24} height={24} />
         </button>
 
-        
+
         <button
           type="button"
           onClick={goNext}
@@ -155,53 +142,41 @@ function Projects() {
 
 
         <div className="px-16 py-10 sm:px-20">
-          <div className="mb-4 flex items-center justify-between">
-            <span className="text-xs font-medium tracking-widest text-black/40">
-              {current + 1} / {projects.length}
-            </span>
-            {isLast && (
-              
-             <a   href={GITHUB_PROFILE}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 whitespace-nowrap rounded-full border border-black/15 px-4 py-2 text-sm font-medium text-black/70 transition-colors hover:bg-black hover:text-white"
-              >
-                <Icon icon="mdi:github" width={16} height={16} />
-                View more on GitHub
-              </a>
-            )}
-          </div>
-
           <div className="flex items-start justify-between">
-            <div className="flex items-center gap-3">
-              
-              <h3 className="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-black">
+            <div>
+              <h3 className="text-[clamp(1.75rem,3.5vw,2.75rem)] font-bold text-black">
                 {project.title}
               </h3>
+              <div className="mt-3 flex flex-wrap items-center gap-3 text-sm font-medium uppercase tracking-wide text-black/50">
+                <span>{project.category}</span>
+                <span className="h-1 w-1 rounded-full bg-black/30" />
+                <span>{project.dateRange}</span>
+              </div>
             </div>
 
-            <span className="text-[clamp(2rem,5vw,3.5rem)] font-bold leading-none">
-              <span className="text-blue-600">{project.index[0]}</span>
-              <span className="text-black/30">{project.index[1]}</span>
+            <span
+              className="text-[clamp(2.25rem,5.5vw,4rem)] font-bold leading-none opacity-30"
+              style={{ color: project.accent }}
+            >
+              {project.index}
             </span>
           </div>
 
-          <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-5 lg:items-start">
-            
+          <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-5 lg:items-start">
+
             <div className="lg:col-span-2">
-            
 
               <p
-                className="mt-5 max-w-md text-lg leading-relaxed"
-                style={{ color: "#333333" }}
+                className="text-xl leading-relaxed"
+                style={{ color: "#1a1a1a" }}
               >
                 {project.description}
               </p>
 
-              <div className="mt-8 flex flex-col gap-3">
+              <div className="mt-8 flex flex-col gap-4">
                 {project.stack.map((row) => (
-                  <div key={row.label} className="flex gap-4 text-sm">
-                    <span className="w-24 shrink-0 font-semibold uppercase tracking-wide text-black/50">
+                  <div key={row.label} className="flex gap-4 text-base">
+                    <span className="w-28 shrink-0 font-semibold uppercase tracking-wide text-black/50">
                       {row.label}
                     </span>
                     <span style={{ color: "#333333" }}>{row.value}</span>
@@ -209,18 +184,36 @@ function Projects() {
                 ))}
               </div>
 
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-8 inline-flex items-center gap-2 rounded-full border border-black/15 px-5 py-2.5 text-sm font-medium text-black transition-colors hover:bg-black hover:text-white"
-              >
-                <Icon icon="mdi:github" width={18} height={18} />
-                View Code
-              </a>
+              <div className="mt-10 flex flex-wrap items-center gap-3">
+                {project.github && (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full border border-black/15 px-6 py-3 text-base font-medium text-black transition-colors hover:bg-black hover:text-white"
+                  >
+
+                    
+                    <Icon icon="mdi:github" width={20} height={20} />
+                    View Code
+                  </a>
+                )}
+
+                {project.url && (
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full bg-black px-6 py-3 text-base font-medium text-white transition-colors hover:bg-black/80"
+                  >
+                    <Icon icon="mdi:open-in-new" width={20} height={20} />
+                    View Live
+                  </a>
+                )}
+              </div>
             </div>
 
-        
+
             <div className="lg:col-span-3 aspect-[16/9] overflow-hidden rounded-xl border border-black/10 bg-black/5 shadow-sm">
               {!imgError ? (
                 <img
@@ -236,6 +229,22 @@ function Projects() {
                 </div>
               )}
             </div>
+          </div>
+
+          <div className="mt-12 flex items-center justify-between border-t border-black/10 pt-6">
+            <span className="text-xs font-medium tracking-widest text-black/40">
+              {current + 1} / {projects.length}
+            </span>
+
+            <a
+              href={GITHUB_PROFILE}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 whitespace-nowrap rounded-full border border-black/15 px-8 py-3 text-lg font-medium text-black/70 transition-colors hover:bg-black hover:text-white"
+            >
+              <Icon icon="mdi:github" width={16} height={16} />
+              View more on GitHub
+            </a>
           </div>
         </div>
       </div>
