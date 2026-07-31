@@ -17,7 +17,7 @@ export default function Home() {
   const experienceRef = useRef(null);
   const contactRef = useRef(null);
 
-  const scrollTo = (ref) => {
+  const scrollTo = (ref: React.RefObject<HTMLElement | null>) => {
     setOpen(false);
     ref.current?.scrollIntoView({ behavior: "smooth" });
   };
