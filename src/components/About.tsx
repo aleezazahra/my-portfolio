@@ -50,15 +50,15 @@ function About() {
       pin={true}                     
       style={{ backgroundColor: "#000000", color: "#fff" }}
     >
-      <div className="flex min-h-[90vh] flex-col justify-between px-6 py-12 md:px-20 lg:px-32">
-        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-16 w-full max-w-7xl mx-auto my-auto">
+      <div className="flex min-h-[100svh] flex-col justify-between px-0 py-4 sm:px-2 sm:py-8 md:px-8 lg:px-16">
+        <div className="mx-auto my-auto flex w-full max-w-7xl flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-16">
           
           <div className="flex-1 max-w-2xl w-full">
-            <h2 className="text-[clamp(3rem,10vw,9rem)] font-bold tracking-tight leading-[0.85] uppercase text-white mb-10">
+            <h2 className="mb-8 text-[clamp(2.8rem,10vw,9rem)] font-bold uppercase leading-[0.85] tracking-tight text-white sm:mb-10">
               Wanna yap?
             </h2>
 
-            <form ref={formRef} onSubmit={sendEmail} className="flex flex-col gap-8">
+            <form ref={formRef} onSubmit={sendEmail} className="flex flex-col gap-6 sm:gap-8">
               <div className="relative">
                 <input
                   type="text"
@@ -96,7 +96,7 @@ function About() {
               <div>
                 <button
                   type="submit"
-                  className="border border-white/30 px-10 py-3 text-white uppercase tracking-wider text-sm hover:bg-white mb-20 hover:text-black transition-all rounded-4xl"
+                  className="mb-4 rounded-full border border-white/30 px-10 py-3 text-sm uppercase tracking-wider text-white transition-all hover:bg-white hover:text-black lg:mb-20"
                 >
                   Send
                 </button>
@@ -104,14 +104,14 @@ function About() {
             </form>
           </div>
 
-          <div className="flex lg:flex-col mt-10 mr-20 items-center gap-5 shrink-0 overflow-x-auto lg:overflow-visible py-4">
+          <div className="flex max-w-full shrink-0 items-center gap-3 overflow-x-auto py-2 lg:mt-10 lg:flex-col lg:gap-5 lg:overflow-visible lg:py-4">
             {socials.map(({ name, href, icon }) => (
               <a
                 key={name}
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-14 w-14 items-center justify-center rounded-full border border-white/30 text-white transition-all hover:border-white hover:bg-white/10"
+                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-white/30 text-white transition-all hover:border-white hover:bg-white/10 sm:h-14 sm:w-14"
                 aria-label={`Visit my ${name} profile`}
               >
                 <Icon icon={icon} width={24} height={24} aria-hidden="true" />

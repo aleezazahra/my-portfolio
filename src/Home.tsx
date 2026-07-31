@@ -30,20 +30,20 @@ export default function Home() {
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className={`fixed top-6 right-6 z-[9999] p-3 text-white transition-transform hover:scale-105 ${
+        className={`fixed right-3 top-3 z-[9999] p-2 text-white transition-transform hover:scale-105 sm:right-6 sm:top-6 sm:p-3 ${
           open ? "" : "mix-blend-difference"
         }`}
         aria-label={open ? "Close menu" : "Open menu"}
         aria-expanded={open}
         aria-controls="main-menu"
       >
-        {open ? <X size={40} /> : <Menu size={45} />}
+        {open ? <X className="h-8 w-8 sm:h-10 sm:w-10" /> : <Menu className="h-9 w-9 sm:h-11 sm:w-11" />}
       </button>
 
 
       {open && (
         <div id="main-menu" className="fixed inset-0 z-[9998] flex items-center justify-center bg-black text-white">
-          <nav aria-label="Main navigation" className="flex flex-col items-center gap-7 text-center text-[clamp(2.5rem,8vw,5rem)] font-bold uppercase">
+          <nav aria-label="Main navigation" className="flex max-h-[100svh] flex-col items-center gap-4 overflow-y-auto px-5 py-20 text-center text-[clamp(2rem,10vw,5rem)] font-bold uppercase sm:gap-7">
             {menuItems.map(({ label, sectionId }) => (
               <button
                 key={sectionId}
@@ -75,15 +75,15 @@ export default function Home() {
           className="relative overflow-hidden"
           style={{ backgroundColor: "#000", color: "#fff" }}
         >
-          <div className="absolute left-1/2 top-1/2 h-52 w-[170%] -translate-x-1/2 -translate-y-1/2 rotate-[-19deg] bg-white" />
+          <div className="absolute left-1/2 top-1/2 h-32 w-[190%] -translate-x-1/2 -translate-y-1/2 rotate-[-19deg] bg-white sm:h-52 sm:w-[170%]" />
 
-          <div className="relative flex min-h-screen flex-col items-center justify-center px-6 py-24">
+          <div className="relative flex min-h-[100svh] flex-col items-center justify-center px-1 py-20 sm:px-6 sm:py-24">
             <h1
               className="
                 text-center
                 leading-[0.85]
                 tracking-tight
-                text-[clamp(3.5rem,7vw+13vh,7rem)]
+                text-[clamp(3rem,16vw,7rem)]
                 text-white
                 font-bold
                 mix-blend-difference uppercase
@@ -94,14 +94,14 @@ export default function Home() {
 
             <p
               className="
-                mt-2 max-w-xl text-center tracking-[0.35em] text-xl
+                mt-4 max-w-xl text-center text-sm tracking-[0.18em] sm:mt-2 sm:text-xl sm:tracking-[0.35em]
                 text-white mix-blend-difference 
               "
             >
               18 y/o TypeScript Developer and aspiring ML engineer
             </p>
 
-            <div className="mt-8 flex gap-5">
+            <div className="mt-8 flex w-full max-w-sm flex-col gap-3 px-3 min-[400px]:flex-row min-[400px]:justify-center sm:w-auto sm:max-w-none sm:gap-5 sm:px-0">
           
               <a
                 href="#contact"
@@ -109,7 +109,7 @@ export default function Home() {
                   event.preventDefault();
                   scrollTo("contact");
                 }}
-                className="group relative overflow-hidden rounded-full border border-white/40 px-10 py-3 text-xs uppercase tracking-[0.35em]"
+                className="group relative overflow-hidden rounded-full border border-white/40 px-6 py-3 text-center text-xs uppercase tracking-[0.22em] sm:px-10 sm:tracking-[0.35em]"
                 aria-label="Go to contact section"
               >
                   <video
@@ -133,7 +133,7 @@ export default function Home() {
                 href={myResume}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative overflow-hidden rounded-full border border-white/25 px-10 py-3 text-sm uppercase tracking-[0.35em] group"
+                className="group relative overflow-hidden rounded-full border border-white/25 px-6 py-3 text-sm uppercase tracking-[0.22em] sm:px-10 sm:tracking-[0.35em]"
               >
                 <span className="absolute inset-x-0 bottom-0 h-0 bg-white transition-all duration-300 ease-out group-hover:h-full"></span>
                 <span className="relative z-10 flex flex-row items-center justify-center gap-2 text-white transition-colors duration-300 group-hover:text-black">

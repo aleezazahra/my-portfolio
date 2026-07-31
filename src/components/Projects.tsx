@@ -106,17 +106,17 @@ function Projects() {
       pin={false}
       style={{ backgroundColor: "#fff", color: "#111" }}
     >
-      <h2 className="text-[clamp(3.5rem,10vw,10rem)] font-bold leading-[0.85] uppercase tracking-tight text-black">
+      <h2 className="text-[clamp(3rem,10vw,10rem)] font-bold leading-[0.85] uppercase tracking-tight text-black">
         Projects
       </h2>
 
-      <div className="relative mt-12">
+      <div className="relative mt-8 sm:mt-12">
       
         <button
           type="button"
           onClick={goPrev}
           aria-label="Previous project"
-          className="absolute left-0 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-black text-white shadow-md hover:bg-neutral-800"
+          className="absolute bottom-0 left-0 z-20 flex h-11 w-11 items-center justify-center rounded-full bg-black text-white shadow-md hover:bg-neutral-800 sm:bottom-auto sm:top-1/2 sm:h-12 sm:w-12 sm:-translate-y-1/2"
         >
           <Icon icon="mdi:chevron-left" width={24} height={24} />
         </button>
@@ -125,12 +125,12 @@ function Projects() {
           type="button"
           onClick={goNext}
           aria-label="Next project"
-          className="absolute right-0 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-black text-white shadow-md hover:bg-neutral-800"
+          className="absolute bottom-0 left-14 z-20 flex h-11 w-11 items-center justify-center rounded-full bg-black text-white shadow-md hover:bg-neutral-800 sm:bottom-auto sm:left-auto sm:right-0 sm:top-1/2 sm:h-12 sm:w-12 sm:-translate-y-1/2"
         >
           <Icon icon="mdi:chevron-right" width={24} height={24} />
         </button>
 
-        <div className="px-16 py-10 sm:px-20">
+        <div className="pb-16 sm:px-16 sm:py-10 md:px-20">
           <div className="flex items-start justify-between">
             <div>
               <h3 className="text-[clamp(1.75rem,3.5vw,2.75rem)] font-bold text-black">
@@ -144,10 +144,10 @@ function Projects() {
             </div>
           </div>
 
-          <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-5 lg:items-start">
+          <div className="mt-8 grid grid-cols-1 gap-8 lg:mt-10 lg:grid-cols-5 lg:items-start lg:gap-10">
             <div className="lg:col-span-2">
               <p
-                className="text-xl leading-relaxed"
+                className="text-base leading-relaxed sm:text-lg xl:text-xl"
                 style={{ color: "#1a1a1a" }}
               >
                 {project.description}
@@ -155,8 +155,8 @@ function Projects() {
 
               <div className="mt-8 flex flex-col gap-4">
                 {project.stack.map((row) => (
-                  <div key={row.label} className="flex gap-4 text-base">
-                    <span className="w-28 shrink-0 font-semibold uppercase tracking-wide text-black/50">
+                  <div key={row.label} className="flex flex-col gap-1 text-sm min-[420px]:flex-row min-[420px]:gap-4 sm:text-base">
+                    <span className="shrink-0 font-semibold uppercase tracking-wide text-black/50 min-[420px]:w-28">
                       {row.label}
                     </span>
                     <span style={{ color: "#333333" }}>{row.value}</span>
@@ -191,7 +191,7 @@ function Projects() {
               </div>
             </div>
 
-            <div className="lg:col-span-3 aspect-[16/9] -mt-30 overflow-hidden rounded-xl border border-black/10 bg-black/5 shadow-sm">
+            <div className="aspect-[16/9] overflow-hidden rounded-xl border border-black/10 bg-black/5 shadow-sm lg:col-span-3 lg:-mt-20 xl:-mt-28">
               {!imgError ? (
                 <img
                   src={project.image}
@@ -208,7 +208,7 @@ function Projects() {
             </div>
           </div>
 
-          <div className="mt-12 flex items-center justify-between border-t border-black/10 pt-6">
+          <div className="mt-10 flex flex-col items-end gap-4 border-t border-black/10 pt-6 sm:mt-12 sm:flex-row sm:items-center sm:justify-between">
             <span className="text-xs font-medium tracking-widest text-black/40">
               {current + 1} / {projects.length}
             </span>
@@ -217,7 +217,7 @@ function Projects() {
               href={GITHUB_PROFILE}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 whitespace-nowrap rounded-full border border-black/15 px-8 py-3 text-lg font-medium text-black/70 transition-colors hover:bg-black hover:text-white"
+              className="flex items-center gap-2 rounded-full border border-black/15 px-5 py-3 text-sm font-medium text-black/70 transition-colors hover:bg-black hover:text-white sm:px-8 sm:text-base lg:text-lg"
             >
               <Icon icon="mdi:github" width={16} height={16} />
               View more on GitHub

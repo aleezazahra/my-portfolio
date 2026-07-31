@@ -69,14 +69,14 @@ function TechStack() {
            whileInView={{ opacity: 1, y: 0 }}
            viewport={{ once: true, margin: "-100px" }}
            transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
-           className="text-[clamp(3.5rem,10vw,10rem)] font-bold leading-[0.85] uppercase tracking-tight  text-white"
+           className="text-[clamp(3rem,10vw,10rem)] font-bold leading-[0.85] uppercase tracking-tight text-white"
          >
           Tech
           <br />
           Stack
         </motion.h2>
 
-        <div  className="mt-16 flex flex-col">
+        <div className="mt-10 flex flex-col sm:mt-16">
           {techStack.map((section, sectionIndex) => (
             <motion.div 
               key={section.title} 
@@ -84,14 +84,14 @@ function TechStack() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.7, delay: sectionIndex * 0.1, ease: [0.25, 1, 0.5, 1] }}
-              className="border-t border-white/15 py-10"
+              className="border-t border-white/15 py-8 sm:py-10"
             >
-              <div className="flex flex-col sm:gap-20 lg:gap-50 sm:flex-row sm:items-start">
-                <h3 className="w-full shrink-0 text-[clamp(2rem,5vw,3.5rem)] font-bold uppercase leading-none text-white/40 sm:w-64">
+              <div className="flex flex-col gap-7 md:flex-row md:items-start md:gap-12 xl:gap-32">
+                <h3 className="w-full shrink-0 text-[clamp(1.75rem,5vw,3.5rem)] font-bold uppercase leading-none text-white/40 md:w-52 xl:w-64">
                   {section.title}
                 </h3>
 
-                <div className="grid flex-1 grid-cols-2 gap-x-8 gap-y-12 sm:grid-cols-3 sm:gap-x-5">
+                <div className="grid min-w-0 flex-1 grid-cols-1 gap-x-5 gap-y-7 min-[380px]:grid-cols-2 sm:grid-cols-3 sm:gap-y-10 xl:grid-cols-4">
                   {section.items.map(({ name, icon }) => (
                     <div key={name} className="flex items-center gap-3">
                       <span className="flex h-9 w-9 shrink-0 items-center justify-center">
@@ -102,7 +102,7 @@ function TechStack() {
                         />
                       </span>
 
-                      <span className="text-base sm:text-2xl text-white ">
+                      <span className="min-w-0 break-words text-base text-white sm:text-lg xl:text-xl">
                         {name}
                       </span>
                     </div>

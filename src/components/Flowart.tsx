@@ -42,7 +42,7 @@ export const FlowSection: React.FC<FlowSectionProps> = ({
     <div
       data-flow-inner
       className={cx(
-        'flow-art-container relative flex min-h-screen w-full flex-col justify-between gap-6 px-[4vw] pt-[clamp(2rem,8vw,4vw)] pb-[4vw]',
+        'flow-art-container relative flex min-h-[100svh] w-full flex-col justify-between gap-6 px-4 py-10 sm:px-8 sm:py-12 lg:px-[4vw] lg:pt-[clamp(2rem,8vw,4vw)] lg:pb-[4vw]',
         'will-change-transform shadow-2xl bg-white',
       )}
       style={{ transformOrigin: 'bottom left', ...style }}
@@ -93,6 +93,7 @@ const FlowArt: React.FC<FlowArtProps> = ({
         if (!inner) return;
 
         const canPin = section.dataset.flowPin !== 'false';
+        const compactScreen = window.matchMedia('(max-width: 767px), (max-height: 650px)').matches;
 
         if (i > 0) {
           gsap.set(inner, {
@@ -118,7 +119,7 @@ const FlowArt: React.FC<FlowArtProps> = ({
           if (tween.scrollTrigger) triggers.push(tween.scrollTrigger);
         }
 
-        if (canPin && i < sections.length - 1) {
+        if (canPin && !compactScreen && i < sections.length - 1) {
           triggers.push(
             ScrollTrigger.create({
               trigger: section,

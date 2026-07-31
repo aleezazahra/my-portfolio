@@ -6,10 +6,10 @@ function Statement(){
           style={{ backgroundColor: "#FFFFFF", color: "#fff" }}
         >
         
-          <div>
+          <div className="flex min-h-[calc(100svh-5rem)] items-center">
             <h2
               className="
-                text-[clamp(3.5rem,12vw,14rem)] font-bold leading-[0.85] 
+                text-[clamp(2.8rem,13vw,14rem)] font-bold leading-[0.88]
                 text-black uppercase tracking-tight
               "
             >
