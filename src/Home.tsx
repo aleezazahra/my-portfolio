@@ -43,7 +43,10 @@ export default function Home() {
 
       {open && (
         <div id="main-menu" className="fixed inset-0 z-[9998] flex items-center justify-center bg-black text-white">
-          <nav aria-label="Main navigation" className="flex max-h-[100svh] flex-col items-center gap-4 overflow-y-auto px-5 py-20 text-center text-[clamp(2rem,10vw,5rem)] font-bold uppercase sm:gap-7">
+          <nav
+            aria-label="Main navigation"
+            className="main-navigation flex max-h-[100svh] flex-col items-center gap-3 overflow-y-auto px-5 py-16 text-center text-[clamp(1.6rem,7vw,4rem)] font-bold uppercase sm:gap-5 sm:py-20"
+          >
             {menuItems.map(({ label, sectionId }) => (
               <button
                 key={sectionId}
@@ -59,7 +62,7 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Visit my GitHub profile"
-              className="mt-2 flex h-12 w-12 items-center justify-center rounded-full border border-white text-white transition-colors hover:bg-white hover:text-black"
+              className="mt-2 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white text-white transition-colors hover:bg-white hover:text-black sm:h-12 sm:w-12"
             >
               <Icon icon="mdi:github" width={22} height={22} aria-hidden="true" />
             </a>

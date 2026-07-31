@@ -12,7 +12,7 @@ const GITHUB_PROFILE = "https://github.com/aleezazahra";
 
 const projects = [
   {
-    title: "Naqsh Resume Builder",
+    title: "Naqsh Resume",
     category: "Full-Stack",
     dateRange: "June 2026",
     accent: "#686868",
@@ -56,14 +56,14 @@ const projects = [
     url: "https://catos-portfolio01.netlify.app/",
   },
   {
-    title: "Hyprland Fedora Rice ",
+    title: "Hyprland Rice ",
     category: "Bash Scripting | Linux",
     dateRange: "July 2026",
     accent: "#686868",
     description:
       "A fully customized Fedora desktop setup built around the Hyprland Wayland compositor, including a hand-configured Waybar status bar, custom keybindings, and shell scripts that tie theming, wallpapers, and system utilities together into one cohesive rice.",
     stack: [
-      { label: "Tech ", value: "Bash, CSS, Hyprland, Waybar, Pywal, zsh" },
+      { label: "Tech ", value: "Bash, CSS, Hyprland, Waybar, Fedora, Pywal, zsh" },
     ],
     image: rice,
     github: "https://github.com/aleezazahra/hyprland-fedora",

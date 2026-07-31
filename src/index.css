@@ -25,3 +25,12 @@ img,
 video {
   max-width: 100%;
 }
+
+/* Keep the fullscreen menu usable on short phones and landscape screens. */
+@media (max-height: 560px) {
+  .main-navigation {
+    gap: 0.5rem;
+    padding-block: 2.75rem;
+    font-size: clamp(1.25rem, 6vh, 2rem);
+  }
+}
