@@ -110,7 +110,7 @@ function Projects() {
       </h2>
 
       <div className="relative mt-12">
-        {/* Solid Black Previous Button */}
+      
         <button
           type="button"
           onClick={goPrev}
@@ -120,7 +120,6 @@ function Projects() {
           <Icon icon="mdi:chevron-left" width={24} height={24} />
         </button>
 
-        {/* Solid Black Next Button */}
         <button
           type="button"
           onClick={goNext}

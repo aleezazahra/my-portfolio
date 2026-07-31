@@ -10,7 +10,7 @@ const socials = [
   { name: "GitHub", href: "https://github.com/aleezazahra", icon: "mdi:github" },
   { name: "Instagram", href: "https://instagram.com/yourusername", icon: "mdi:instagram" },
   { name: "Fable", href: "https://fable.co/yourusername", icon: "mdi:book-open-page-variant-outline" },
-  { name: "Discord", href: "https://discord.com/users/your-user-id", icon: "mdi:discord" },
+  { name: "Discord", href: "https://discord.com/users/aleezazahra", icon: "mdi:discord" },
 ] as const;
 
 function About() {
@@ -53,7 +53,7 @@ function About() {
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-16 w-full max-w-7xl mx-auto my-auto">
           
           <div className="flex-1 max-w-2xl w-full">
-            <h2 className="text-[clamp(3rem,6vw,5rem)] font-bold tracking-tight text-white mb-10">
+            <h2 className="text-[clamp(3rem,10vw,9rem)] font-bold tracking-tight leading-[0.85] uppercase text-white mb-10">
               Wanna yap?
             </h2>
 
@@ -95,7 +95,7 @@ function About() {
               <div>
                 <button
                   type="submit"
-                  className="border border-white px-10 py-3 text-white uppercase tracking-wider text-sm hover:bg-white hover:text-black transition-all rounded-none"
+                  className="border border-white/30 px-10 py-3 text-white uppercase tracking-wider text-sm hover:bg-white mb-20 hover:text-black transition-all rounded-4xl"
                 >
                   Send
                 </button>
@@ -103,7 +103,7 @@ function About() {
             </form>
           </div>
 
-          <div className="flex lg:flex-col items-center gap-5 shrink-0 overflow-x-auto lg:overflow-visible py-4">
+          <div className="flex lg:flex-col mt-10 mr-20 items-center gap-5 shrink-0 overflow-x-auto lg:overflow-visible py-4">
             {socials.map(({ name, href, icon }) => (
               <a
                 key={name}
