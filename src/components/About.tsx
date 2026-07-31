@@ -4,12 +4,12 @@ import React, { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 
 const socials = [
-  { name: "Pinterest", href: "https://pinterest.com/yourusername", icon: "mdi:pinterest" },
-  { name: "Letterboxd", href: "https://letterboxd.com/yourusername", icon: "simple-icons:letterboxd" },
+  { name: "Pinterest", href: "https://pinterest.com/aleezafr__", icon: "mdi:pinterest" },
+  { name: "Letterboxd", href: "https://letterboxd.com/aleezazahra", icon: "simple-icons:letterboxd" },
   { name: "YouTube", href: "https://youtube.com/@aleeza011", icon: "mdi:youtube" },
   { name: "GitHub", href: "https://github.com/aleezazahra", icon: "mdi:github" },
-  { name: "Instagram", href: "https://instagram.com/yourusername", icon: "mdi:instagram" },
-  { name: "Fable", href: "https://fable.co/yourusername", icon: "mdi:book-open-page-variant-outline" },
+  { name: "Instagram", href: "https://instagram.com/4leezaa_", icon: "mdi:instagram" },
+  { name: "Fable", href: "https://fable.co/fabler/aleeza-470417083655?tab=stats&period_type=year", icon: "mdi:book-open-page-variant-outline" },
   { name: "Discord", href: "https://discord.com/users/aleezazahra", icon: "mdi:discord" },
 ] as const;
 

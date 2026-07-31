@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FlowSection } from "./Flowart";
 import { Icon } from "@iconify/react";
 import naqsh from "../assets/naqsh.png";
@@ -84,12 +84,45 @@ const projects = [
   },
 ];
 
+function WipeLink({ href, children, variant }) {
+  const base =
+    variant === "solid"
+      ? "border border-transparent bg-black text-white"
+      : "border border-black/15 bg-transparent text-black";
+
+  const fillColor = variant === "solid" ? "bg-white" : "bg-black";
+  const textHover = variant === "solid" ? "group-hover:text-black" : "group-hover:text-white";
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`group relative inline-flex items-center gap-2 overflow-hidden rounded-full px-6 py-3 text-base font-medium transition-colors duration-300 ${base}`}
+    >
+      <span
+        className={`pointer-events-none absolute inset-0 origin-bottom scale-y-0 ${fillColor} transition-transform duration-500 ease-out group-hover:scale-y-100`}
+        aria-hidden="true"
+      />
+      <span className={`relative z-10 flex items-center gap-2 transition-colors duration-300 ${textHover}`}>
+        {children}
+      </span>
+    </a>
+  );
+}
+
 function Projects() {
   const [current, setCurrent] = useState(0);
   const [imgError, setImgError] = useState(false);
   const project = projects[current];
 
-  // Infinite/unlimited looping functions
+  useEffect(() => {
+    projects.forEach((p) => {
+      const img = new Image();
+      img.src = p.image;
+    });
+  }, []);
+
   const goPrev = () => {
     setCurrent((i) => (i === 0 ? projects.length - 1 : i - 1));
     setImgError(false);
@@ -111,7 +144,7 @@ function Projects() {
       </h2>
 
       <div className="relative mt-8 sm:mt-12">
-      
+
         <button
           type="button"
           onClick={goPrev}
@@ -166,27 +199,17 @@ function Projects() {
 
               <div className="mt-10 flex flex-wrap items-center gap-3">
                 {project.github && (
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full border border-black/15 px-6 py-3 text-base font-medium text-black transition-colors hover:bg-black hover:text-white"
-                  >
+                  <WipeLink href={project.github} variant="outline">
                     <Icon icon="mdi:github" width={20} height={20} />
                     View Code
-                  </a>
+                  </WipeLink>
                 )}
 
                 {project.url && (
-                  <a
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full bg-black px-6 py-3 text-base font-medium text-white transition-colors hover:bg-black/80"
-                  >
+                  <WipeLink href={project.url} variant="solid">
                     <Icon icon="mdi:open-in-new" width={20} height={20} />
                     View Live
-                  </a>
+                  </WipeLink>
                 )}
               </div>
             </div>
@@ -194,10 +217,11 @@ function Projects() {
             <div className="aspect-[16/9] overflow-hidden rounded-xl border border-black/10 bg-black/5 shadow-sm lg:col-span-3 lg:-mt-20 xl:-mt-28">
               {!imgError ? (
                 <img
+                  key={project.image}
                   src={project.image}
                   alt={`${project.title} screenshot`}
                   onError={() => setImgError(true)}
-                  className="h-full w-full object-cover object-center"
+                  className="h-full w-full object-cover object-center animate-[fadeIn_0.3s_ease-out]"
                 />
               ) : (
                 <div className="flex h-full w-full flex-col items-center justify-center gap-2 text-black/30">
@@ -217,10 +241,16 @@ function Projects() {
               href={GITHUB_PROFILE}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 rounded-full border border-black/15 px-5 py-3 text-sm font-medium text-black/70 transition-colors hover:bg-black hover:text-white sm:px-8 sm:text-base lg:text-lg"
+              className="group relative flex items-center gap-2 overflow-hidden rounded-full border border-black/15 px-5 py-3 text-sm font-medium text-black/70 transition-colors duration-300 sm:px-8 sm:text-base lg:text-lg"
             >
-              <Icon icon="mdi:github" width={16} height={16} />
-              View more on GitHub
+              <span
+                className="pointer-events-none absolute inset-0 origin-bottom scale-y-0 bg-black transition-transform duration-500 ease-out group-hover:scale-y-100"
+                aria-hidden="true"
+              />
+              <span className="relative z-10 flex items-center gap-2 transition-colors duration-300 group-hover:text-white">
+                <Icon icon="mdi:github" width={16} height={16} />
+                View more on GitHub
+              </span>
             </a>
           </div>
         </div>
