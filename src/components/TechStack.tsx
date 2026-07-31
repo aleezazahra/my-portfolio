@@ -58,6 +58,7 @@ function TechStack() {
   return (
   
       <FlowSection
+        id="tech-stack"
         aria-label="Tech Stack"
         pin={false}
         style={{ backgroundColor: "#000", color: "#fff" }}

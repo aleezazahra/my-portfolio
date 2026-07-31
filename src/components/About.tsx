@@ -45,7 +45,8 @@ function About() {
 
   return (
     <FlowSection
-      aria-label="About me"
+      id="contact"
+      aria-label="Contact"
       pin={true}                     
       style={{ backgroundColor: "#000000", color: "#fff" }}
     >

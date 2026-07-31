@@ -1,6 +1,7 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import FlowArt, { FlowSection } from "../src/components/Flowart";
 import { Menu, X, ArrowUpRight } from "lucide-react";
+import { Icon } from "@iconify/react";
 import myResume from "../src/assets/my resume2.pdf"; // Renamed file to avoid spaces
 import myVideo from "../src/assets/waves.mp4";
 import TechStack from "./components/TechStack";
@@ -10,44 +11,66 @@ import Projects from "./components/Projects";
 
 export default function Home() {
   const [open, setOpen] = useState(false);
-  
 
-  const aboutRef = useRef(null);
-  const projectsRef = useRef(null);
-  const experienceRef = useRef(null);
-  const contactRef = useRef(null);
-
-  const scrollTo = (ref: React.RefObject<HTMLElement | null>) => {
+  const scrollTo = (sectionId: string) => {
     setOpen(false);
-    ref.current?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
   };
+
+  const menuItems = [
+    { label: "About", sectionId: "about" },
+    { label: "Projects", sectionId: "projects" },
+    { label: "Tech Stack", sectionId: "tech-stack" },
+    { label: "Contact", sectionId: "contact" },
+  ];
 
   return (
     <>
 
       <button
+        type="button"
         onClick={() => setOpen(!open)}
-        className="fixed top-6 right-6 z-[9999] p-3 text-white transition-all hover:scale-105"
+        className={`fixed top-6 right-6 z-[9999] p-3 text-white transition-transform hover:scale-105 ${
+          open ? "" : "mix-blend-difference"
+        }`}
         aria-label={open ? "Close menu" : "Open menu"}
+        aria-expanded={open}
+        aria-controls="main-menu"
       >
         {open ? <X size={40} /> : <Menu size={45} />}
       </button>
 
 
       {open && (
-        <div className="fixed inset-0 z-[9998] flex items-center justify-center bg-black text-white">
-          <div className="flex flex-col items-center gap-8 text-5xl font-bold uppercase">
-            <button onClick={() => scrollTo(aboutRef)}>About</button>
-            <button onClick={() => scrollTo(projectsRef)}>Projects</button>
-            <button onClick={() => scrollTo(experienceRef)}>Experience</button>
-            <button onClick={() => scrollTo(contactRef)}>Contact</button>
-          </div>
+        <div id="main-menu" className="fixed inset-0 z-[9998] flex items-center justify-center bg-black text-white">
+          <nav aria-label="Main navigation" className="flex flex-col items-center gap-7 text-center text-[clamp(2.5rem,8vw,5rem)] font-bold uppercase">
+            {menuItems.map(({ label, sectionId }) => (
+              <button
+                key={sectionId}
+                type="button"
+                onClick={() => scrollTo(sectionId)}
+                className="transition-opacity hover:opacity-60"
+              >
+                {label}
+              </button>
+            ))}
+            <a
+              href="https://github.com/aleezazahra"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Visit my GitHub profile"
+              className="mt-2 flex h-12 w-12 items-center justify-center rounded-full border border-white text-white transition-colors hover:bg-white hover:text-black"
+            >
+              <Icon icon="mdi:github" width={22} height={22} aria-hidden="true" />
+            </a>
+          </nav>
         </div>
       )}
 
       <FlowArt>
         
         <FlowSection
+          id="about"
           aria-label="Who am I"
           className="relative overflow-hidden"
           style={{ backgroundColor: "#000", color: "#fff" }}
@@ -80,8 +103,15 @@ export default function Home() {
 
             <div className="mt-8 flex gap-5">
           
-              <a href="#contact" ref={contactRef}>
-                <button className="relative overflow-hidden rounded-full border border-white/40 px-10 py-3 text-xs uppercase tracking-[0.35em] group">
+              <a
+                href="#contact"
+                onClick={(event) => {
+                  event.preventDefault();
+                  scrollTo("contact");
+                }}
+                className="group relative overflow-hidden rounded-full border border-white/40 px-10 py-3 text-xs uppercase tracking-[0.35em]"
+                aria-label="Go to contact section"
+              >
                   <video
                     autoPlay
                     loop
@@ -96,7 +126,6 @@ export default function Home() {
                   <span className="relative z-10 flex items-center justify-center gap-2 text-white text-sm font-bold">
                     Contact
                   </span>
-                </button>
               </a>
 
               

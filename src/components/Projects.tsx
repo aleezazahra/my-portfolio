@@ -101,6 +101,7 @@ function Projects() {
 
   return (
     <FlowSection
+      id="projects"
       aria-label="Projects"
       pin={false}
       style={{ backgroundColor: "#fff", color: "#111" }}
