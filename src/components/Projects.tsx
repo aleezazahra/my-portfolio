@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import type { ReactNode } from "react";
 import { FlowSection } from "./Flowart";
 import { Icon } from "@iconify/react";
 import naqsh from "../assets/naqsh.png";
@@ -84,7 +85,13 @@ const projects = [
   },
 ];
 
-function WipeLink({ href, children, variant }) {
+interface WipeLinkProps {
+  href: string;
+  children: ReactNode;
+  variant: "solid" | "outline";
+}
+
+function WipeLink({ href, children, variant }: WipeLinkProps) {
   const base =
     variant === "solid"
       ? "border border-transparent bg-black text-white"
