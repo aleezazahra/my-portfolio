@@ -60,7 +60,7 @@ export default function Home() {
                 text-center
                 leading-[0.85]
                 tracking-tight
-                text-[clamp(3.5rem,7vw+13vh,11rem)]
+                text-[clamp(3.5rem,7vw+13vh,7rem)]
                 text-white
                 font-bold
                 mix-blend-difference uppercase
@@ -71,7 +71,7 @@ export default function Home() {
 
             <p
               className="
-                mt-2 max-w-xl text-center tracking-[0.35em] text-2xl
+                mt-2 max-w-xl text-center tracking-[0.35em] text-xl
                 text-white mix-blend-difference 
               "
             >
@@ -81,7 +81,7 @@ export default function Home() {
             <div className="mt-8 flex gap-5">
           
               <a href="#contact" ref={contactRef}>
-                <button className="relative overflow-hidden rounded-full border border-white/40 px-10 py-4 text-xs uppercase tracking-[0.35em] group">
+                <button className="relative overflow-hidden rounded-full border border-white/40 px-10 py-3 text-xs uppercase tracking-[0.35em] group">
                   <video
                     autoPlay
                     loop
@@ -104,7 +104,7 @@ export default function Home() {
                 href={myResume}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative overflow-hidden rounded-full border border-white/25 px-10 py-4 text-sm uppercase tracking-[0.35em] group"
+                className="relative overflow-hidden rounded-full border border-white/25 px-10 py-3 text-sm uppercase tracking-[0.35em] group"
               >
                 <span className="absolute inset-x-0 bottom-0 h-0 bg-white transition-all duration-300 ease-out group-hover:h-full"></span>
                 <span className="relative z-10 flex flex-row items-center justify-center gap-2 text-white transition-colors duration-300 group-hover:text-black">

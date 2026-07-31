@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { FlowSection } from "./Flowart";
 import { Icon } from "@iconify/react";
-import naqsh from "../assets/naqsh.png"
-import store from "../assets/paperpalace.png"
-import catos from "../assets/catos.png"
-import rice from "../assets/rice.png"
-import portfolio from "../assets/portfolio1.png"
+import naqsh from "../assets/naqsh.png";
+import store from "../assets/paperpalace.png";
+import catos from "../assets/catos.png";
+import rice from "../assets/rice.png";
+import portfolio from "../assets/portfolio1.png";
+
 const GITHUB_PROFILE = "https://github.com/aleezazahra";
 
 const projects = [
   {
-    index: "001",
     title: "Naqsh Resume Builder",
     category: "Full-Stack",
     dateRange: "June 2026",
@@ -19,15 +19,14 @@ const projects = [
       "A full-stack resume builder that lets users create, customize, and export professional resumes through a clean, guided interface. Includes secure sign-in with Google OAuth, live editing with instant preview, multiple resume templates, and one-click PDF export, all backed by a MongoDB data layer for saving and revisiting drafts.",
     stack: [
       { label: "Frontend", value: "TypeScript, React" },
-      { label: "Backend", value: "Node.js, Express.js, MongoDB, Google Auth" }
+      { label: "Backend", value: "Node.js, Express.js, MongoDB, Google Auth" },
     ],
     image: naqsh,
     github: "https://github.com/aleezazahra/resume-builder",
     url: "https://naqshresume.vercel.app",
   },
   {
-    index: "002",
-    title: "Paper Bags E-commerce store ",
+    title: "Paper Bags",
     category: "Full-Stack",
     dateRange: "July 2026",
     accent: "#686868",
@@ -35,14 +34,13 @@ const projects = [
       "A MERN-based e-commerce storefront for stationery and paper products, with a full admin panel for managing inventory, tracking orders, and updating listings. Handles user authentication, a persistent cart, and integrated secure payment processing from browsing through checkout.",
     stack: [
       { label: "Frontend", value: "TypeScript, React" },
-      { label: "Backend", value: "Node.js, Express.js, MongoDB" }
+      { label: "Backend", value: "Node.js, Express.js, MongoDB" },
     ],
     image: store,
     github: null,
     url: "https://project-stationary.vercel.app/",
   },
   {
-    index: "003",
     title: "CatOs Portfolio",
     category: "Frontend",
     dateRange: "March 2026",
@@ -57,7 +55,6 @@ const projects = [
     url: "https://catos-portfolio01.netlify.app/",
   },
   {
-    index: "004",
     title: "Hyprland Fedora Rice ",
     category: "Bash Scripting | Linux",
     dateRange: "July 2026",
@@ -72,7 +69,6 @@ const projects = [
     url: "https://youtu.be/FHg1B-dUH2M",
   },
   {
-    index: "005",
     title: "Portfolio site ",
     category: "TailwindCSS | React",
     dateRange: "January 2026",
@@ -92,24 +88,20 @@ function Projects() {
   const [current, setCurrent] = useState(0);
   const [imgError, setImgError] = useState(false);
   const project = projects[current];
-  const isFirst = current === 0;
-  const isLast = current === projects.length - 1;
 
+  // Infinite/unlimited looping functions
   const goPrev = () => {
-    if (isFirst) return;
-    setCurrent((i) => i - 1);
+    setCurrent((i) => (i === 0 ? projects.length - 1 : i - 1));
     setImgError(false);
   };
   const goNext = () => {
-    if (isLast) return;
-    setCurrent((i) => i + 1);
+    setCurrent((i) => (i === projects.length - 1 ? 0 : i + 1));
     setImgError(false);
   };
 
   return (
     <FlowSection
       aria-label="Projects"
-      
       pin={false}
       style={{ backgroundColor: "#fff", color: "#111" }}
     >
@@ -118,28 +110,25 @@ function Projects() {
       </h2>
 
       <div className="relative mt-12">
-
+        {/* Solid Black Previous Button */}
         <button
           type="button"
           onClick={goPrev}
-          disabled={isFirst}
           aria-label="Previous project"
-          className="absolute left-0 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border bg-black text-white shadow-md transition-opacity hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-20"
+          className="absolute left-0 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-black text-white shadow-md hover:bg-neutral-800"
         >
           <Icon icon="mdi:chevron-left" width={24} height={24} />
         </button>
 
-
+        {/* Solid Black Next Button */}
         <button
           type="button"
           onClick={goNext}
-          disabled={isLast}
           aria-label="Next project"
-          className="absolute right-0 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-black/15 bg-black text-white shadow-md transition-opacity hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-20"
+          className="absolute right-0 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-black text-white shadow-md hover:bg-neutral-800"
         >
           <Icon icon="mdi:chevron-right" width={24} height={24} />
         </button>
-
 
         <div className="px-16 py-10 sm:px-20">
           <div className="flex items-start justify-between">
@@ -153,19 +142,10 @@ function Projects() {
                 <span>{project.dateRange}</span>
               </div>
             </div>
-
-            <span
-              className="text-[clamp(2.25rem,5.5vw,4rem)] font-bold leading-none opacity-30"
-              style={{ color: project.accent }}
-            >
-              {project.index}
-            </span>
           </div>
 
           <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-5 lg:items-start">
-
             <div className="lg:col-span-2">
-
               <p
                 className="text-xl leading-relaxed"
                 style={{ color: "#1a1a1a" }}
@@ -192,8 +172,6 @@ function Projects() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 rounded-full border border-black/15 px-6 py-3 text-base font-medium text-black transition-colors hover:bg-black hover:text-white"
                   >
-
-                    
                     <Icon icon="mdi:github" width={20} height={20} />
                     View Code
                   </a>
@@ -213,8 +191,7 @@ function Projects() {
               </div>
             </div>
 
-
-            <div className="lg:col-span-3 aspect-[16/9] overflow-hidden rounded-xl border border-black/10 bg-black/5 shadow-sm">
+            <div className="lg:col-span-3 aspect-[16/9] -mt-30 overflow-hidden rounded-xl border border-black/10 bg-black/5 shadow-sm">
               {!imgError ? (
                 <img
                   src={project.image}
