@@ -1,6 +1,6 @@
 import { FlowSection } from "./Flowart";
 import { Icon } from "@iconify/react";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 
 const socials = [
@@ -12,6 +12,66 @@ const socials = [
   { name: "Fable", href: "https://fable.co/fabler/aleeza-470417083655?tab=stats&period_type=year", icon: "mdi:book-open-page-variant-outline" },
   { name: "Discord", href: "https://discord.com/users/aleezazahra", icon: "mdi:discord" },
 ] as const;
+
+const SCRAMBLE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const SCRAMBLE_STEP_MS = 40;
+const SCRAMBLE_STEPS_PER_LETTER = 3;
+
+function useScrambleText(text: string, active: boolean) {
+  const [display, setDisplay] = useState(text);
+
+  useEffect(() => {
+    if (!active) {
+      setDisplay(text);
+      return;
+    }
+
+    let frame = 0;
+    const totalFrames = text.length * SCRAMBLE_STEPS_PER_LETTER;
+
+    const interval = setInterval(() => {
+      frame += 1;
+      const revealCount = Math.floor((frame / totalFrames) * text.length);
+
+      const next = text
+        .split("")
+        .map((char, i) => {
+          if (char === " " || char === "\n") return char;
+          if (i < revealCount) return char;
+          return SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)];
+        })
+        .join("");
+
+      setDisplay(next);
+
+      if (revealCount >= text.length) {
+        clearInterval(interval);
+        setDisplay(text);
+      }
+    }, SCRAMBLE_STEP_MS);
+
+    return () => clearInterval(interval);
+  }, [active, text]);
+
+  return display;
+}
+
+const HEADING_TEXT = "Wanna yap?";
+
+function ScrambleHeading() {
+  const [hovered, setHovered] = useState(false);
+  const display = useScrambleText(HEADING_TEXT, hovered);
+
+  return (
+    <h2
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="mb-8 cursor-default text-[clamp(2.8rem,10vw,9rem)] font-bold uppercase leading-[0.85] tracking-tight text-white sm:mb-10"
+    >
+      {display}
+    </h2>
+  );
+}
 
 function About() {
   const formRef = useRef<HTMLFormElement>(null);
@@ -54,9 +114,8 @@ function About() {
         <div className="mx-auto my-auto flex w-full max-w-7xl flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-16">
           
           <div className="flex-1 max-w-2xl w-full">
-            <h2 className="mb-8 text-[clamp(2.8rem,10vw,9rem)] font-bold uppercase leading-[0.85] tracking-tight text-white sm:mb-10">
-              Wanna yap?
-            </h2>
+            <ScrambleHeading />
+          
 
             <form ref={formRef} onSubmit={sendEmail} className="flex flex-col gap-6 sm:gap-8">
               <div className="relative">

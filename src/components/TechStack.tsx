@@ -1,6 +1,7 @@
 import { FlowSection } from "./Flowart";
 import { Icon } from "@iconify/react";
 import { motion } from "framer-motion";
+import React, { useState, useEffect } from "react";
 
 const techStack = [
   {
@@ -54,6 +55,75 @@ const techStack = [
   }
 ];
 
+const SCRAMBLE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const SCRAMBLE_STEP_MS = 40;
+const SCRAMBLE_STEPS_PER_LETTER = 3;
+
+function useScrambleText(text: string, active: boolean) {
+  const [display, setDisplay] = useState(text);
+
+  useEffect(() => {
+    if (!active) {
+      setDisplay(text);
+      return;
+    }
+
+    let frame = 0;
+    const totalFrames = text.length * SCRAMBLE_STEPS_PER_LETTER;
+
+    const interval = setInterval(() => {
+      frame += 1;
+      const revealCount = Math.floor((frame / totalFrames) * text.length);
+
+      const next = text
+        .split("")
+        .map((char, i) => {
+          if (char === " " || char === "\n") return char;
+          if (i < revealCount) return char;
+          return SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)];
+        })
+        .join("");
+
+      setDisplay(next);
+
+      if (revealCount >= text.length) {
+        clearInterval(interval);
+        setDisplay(text);
+      }
+    }, SCRAMBLE_STEP_MS);
+
+    return () => clearInterval(interval);
+  }, [active, text]);
+
+  return display;
+}
+
+const HEADING_TEXT = "Tech\nStack";
+
+function ScrambleHeading() {
+  const [hovered, setHovered] = useState(false);
+  const display = useScrambleText(HEADING_TEXT, hovered);
+
+  return (
+    <motion.h2
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="cursor-default text-[clamp(3rem,10vw,10rem)] font-bold leading-[0.85] uppercase tracking-tight text-white"
+    >
+      {display.split("\n").map((line, i, arr) => (
+        <React.Fragment key={i}>
+          {line}
+          {i < arr.length - 1 && <br />}
+        </React.Fragment>
+      ))}
+    </motion.h2>
+  );
+}
+
 function TechStack() {
   return (
   
@@ -64,17 +134,7 @@ function TechStack() {
         style={{ backgroundColor: "#000", color: "#fff" }}
       >
 
-         <motion.h2 
-           initial={{ opacity: 0, y: 50 }}
-           whileInView={{ opacity: 1, y: 0 }}
-           viewport={{ once: true, margin: "-100px" }}
-           transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
-           className="text-[clamp(3rem,10vw,10rem)] font-bold leading-[0.85] uppercase tracking-tight text-white"
-         >
-          Tech
-          <br />
-          Stack
-        </motion.h2>
+        <ScrambleHeading />
 
         <div className="mt-10 flex flex-col sm:mt-16">
           {techStack.map((section, sectionIndex) => (

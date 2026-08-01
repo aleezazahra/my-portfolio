@@ -118,6 +118,65 @@ function WipeLink({ href, children, variant }: WipeLinkProps) {
   );
 }
 
+const SCRAMBLE_TEXT = "Projects";
+const SCRAMBLE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const SCRAMBLE_STEP_MS = 40;
+const SCRAMBLE_STEPS_PER_LETTER = 3;
+
+function useScrambleText(text: string, active: boolean) {
+  const [display, setDisplay] = useState(text);
+
+  useEffect(() => {
+    if (!active) {
+      setDisplay(text);
+      return;
+    }
+
+    let frame = 0;
+    const totalFrames = text.length * SCRAMBLE_STEPS_PER_LETTER;
+
+    const interval = setInterval(() => {
+      frame += 1;
+      const revealCount = Math.floor((frame / totalFrames) * text.length);
+
+      const next = text
+        .split("")
+        .map((char, i) => {
+          if (char === " ") return " ";
+          if (i < revealCount) return char;
+          return SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)];
+        })
+        .join("");
+
+      setDisplay(next);
+
+      if (revealCount >= text.length) {
+        clearInterval(interval);
+        setDisplay(text);
+      }
+    }, SCRAMBLE_STEP_MS);
+
+    return () => clearInterval(interval);
+  }, [active, text]);
+
+  return display;
+}
+
+function ScrambleHeading() {
+  const [hovered, setHovered] = useState(false);
+  const display = useScrambleText(SCRAMBLE_TEXT, hovered);
+
+  return (
+    <h2
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="cursor-default text-[clamp(3rem,10vw,10rem)] font-bold leading-[0.85] uppercase tracking-tight text-black"
+    >
+      {display}
+    </h2>
+  );
+}
+
 function Projects() {
   const [current, setCurrent] = useState(0);
   const [imgError, setImgError] = useState(false);
@@ -134,6 +193,7 @@ function Projects() {
     setCurrent((i) => (i === 0 ? projects.length - 1 : i - 1));
     setImgError(false);
   };
+
   const goNext = () => {
     setCurrent((i) => (i === projects.length - 1 ? 0 : i + 1));
     setImgError(false);
@@ -146,12 +206,9 @@ function Projects() {
       pin={false}
       style={{ backgroundColor: "#fff", color: "#111" }}
     >
-      <h2 className="text-[clamp(3rem,10vw,10rem)] font-bold leading-[0.85] uppercase tracking-tight text-black">
-        Projects
-      </h2>
+      <ScrambleHeading />
 
       <div className="relative mt-8 sm:mt-12">
-
         <button
           type="button"
           onClick={goPrev}
