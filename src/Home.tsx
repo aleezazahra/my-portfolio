@@ -2,7 +2,7 @@ import { useState } from "react";
 import FlowArt, { FlowSection } from "../src/components/Flowart";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { Icon } from "@iconify/react";
-import myResume from "../src/assets/my resume2.pdf"; // Renamed file to avoid spaces
+import myResume from "../src/assets/my resume.pdf";
 import myVideo from "../src/assets/waves.mp4";
 import TechStack from "./components/TechStack";
 import About from "./components/About";
