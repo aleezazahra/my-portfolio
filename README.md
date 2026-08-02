@@ -22,6 +22,9 @@ A single-page personal site built to showcase my projects, tech stack, and a way
 - **EmailJS** — handles the contact form so people can reach out without me needing a backend 
 - **Vercel** — deployment
 
+## AI Usage
+Used AI (codex) for debugging in flowart component and some fixes in hamburger 
+
 ## Sections
 
 | Section | File | Notes |
@@ -58,6 +61,9 @@ npm run build
 Deployed on [Vercel](https://vercel.com/), connected to this repo for automatic deploys on push.
 
 ## Some Screenshots (cool to add for reviewers ig)
+![alt text](image.png)
+![alt text](image-1.png)
+![alt text](image-2.png)
 
 
 ## License
