@@ -1,5 +1,5 @@
 ## Portfolio Site
-Hi, this is my (third) portfolio um apparently I just didn't like the design of the previous two, so here we are.
+This is my (third) portfolio um apparently I just didn't like the design of the previous two, so here we are.
 
 A single-page personal site built to showcase my projects, tech stack, and a way to get in touch.
 
