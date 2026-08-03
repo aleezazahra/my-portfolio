@@ -24,7 +24,10 @@ A single-page personal site built to showcase my projects, tech stack, and a way
 - **Vercel** — deployment
 
 ## AI Usage
-Used AI (codex) for debugging in flowart component and some fixes in hamburger 
+
+Used AI (opencode CLI) for debugging in projects and hero(Home.tsx) component where I was actually stuck and could not figure out anything else , also I used it to make some changes in flowart 
+
+
 
 ## Sections
 
@@ -36,7 +39,9 @@ Used AI (codex) for debugging in flowart component and some fixes in hamburger
 | Contact | `About.tsx` | Contact form using emailjs plus social links |
 
 
-## Getting Started
+The idea of this flowart component I took from a site I saw a few months ago, i dont have the link for it anymore tho :3 
+
+## Try it out on your computer
 
 ```bash
 git clone https://github.com/aleezazahra/my-portfolio
@@ -56,11 +61,17 @@ npm run build
 Deployed on [Vercel](https://vercel.com/), connected to this repo for automatic deploys on push.
 
 ## Some Screenshots (cool to add for reviewers ig)
+
 ![alt text](image.png)
 ![alt text](image-1.png)
 ![alt text](image-2.png)
+(contact section is personally my favourite 🩷 )
+
+## Mobile Preview
+![alt text](image-3.png)
 
 
 ## License
 
 All content and code are © 2026 Aleeza Zahra. Not licensed for reuse.
+

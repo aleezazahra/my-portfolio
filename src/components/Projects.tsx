@@ -55,7 +55,9 @@ const projects = [
     github: "https://github.com/aleezazahra/CatOs",
     url: "https://catos-portfolio01.netlify.app/",
   },
+ 
   {
+   
     title: "Hyprland Rice ",
     category: "Bash Scripting | Linux",
     dateRange: "July 2026",
