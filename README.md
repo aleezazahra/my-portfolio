@@ -35,8 +35,6 @@ Used AI (codex) for debugging in flowart component and some fixes in hamburger
 | Statement | `Statement.tsx` | scramble-text reveal triggered once on scroll into view |
 | Contact | `About.tsx` | Contact form using emailjs plus social links |
 
-S
-
 
 ## Getting Started
 
