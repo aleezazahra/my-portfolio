@@ -10,6 +10,7 @@ A single-page personal site built to showcase my projects, tech stack, and a way
 - Scroll triggered animations throughout (Gsap + Framermotion)
 - Working contact form via EmailJS
 - Fully responsive , deployed on vercel
+- Headings have some cool scrable effect on hover 
 
 
 ## Tech Stack
@@ -31,14 +32,10 @@ Used AI (codex) for debugging in flowart component and some fixes in hamburger
 |---|---|---|
 | Projects | `Projects.tsx` | Carousel of featured work with prev/next navigation and a scramble-text hover heading |
 | Tech Stack | `TechStack.tsx` | Grouped list of frontend/backend/platform/tool skills that I work with, scroll fade-in per group |
-| Statement | `Statement.tsx` | Full-bleed mission statement, scramble-text reveal triggered once on scroll into view |
-| Contact | `About.tsx` | Contact form (EmailJS) plus social links |
+| Statement | `Statement.tsx` | scramble-text reveal triggered once on scroll into view |
+| Contact | `About.tsx` | Contact form using emailjs plus social links |
 
-Section wrapping/pinning is handled by a shared `FlowSection` component (`Flowart.tsx`).
-
-### Heading effect
-
-Several headings ("Projects", "Tech Stack", "Wanna yap?") use a shared scramble/decode text effect: on hover, letters cycle through random characters and resolve left to right into the real word. The Statement heading uses the same effect but fires once automatically when it scrolls into view instead of on hover.
+S
 
 
 ## Getting Started
